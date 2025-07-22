@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promt Web Application - E2E Tests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .header {
+            background-color: #282c34;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .test-case {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .test-step {
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+        .test-step::before {
+            content: "→";
+            margin-right: 10px;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .expected-result {
+            background-color: #e7f3ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .status-buttons {
+            margin-top: 15px;
+        }
+        .btn {
+            padding: 8px 16px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            color: black;
+        }
+        .app-link {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .app-link:hover {
+            background-color: #0056b3;
+        }
+        .instructions {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .test-results {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: white;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            min-width: 200px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Promt Web Application - Manual E2E Testing Framework</h1>
+        <p>Comprehensive manual testing suite for UI components and user workflows</p>
+    </div>
+
+    <div class="instructions">
+        <h3>Instructions</h3>
+        <ol>
+            <li>Start the React application: <code>npm start</code></li>
+            <li>Open the application in a new tab/window</li>
+            <li>Follow each test case step by step</li>
+            <li>Mark each test as Pass/Fail/Skip based on the results</li>
+            <li>Report any issues found during testing</li>
+        </ol>
+        <a href="http://localhost:3000" target="_blank" class="app-link">Open Application →</a>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Suite 1: Navigation and Routing</h2>
+        
+        <div class="test-case" data-test="nav-1">
+            <h3>TC-NAV-001: Basic Navigation</h3>
+            <div class="test-step">Open the application URL</div>
+            <div class="test-step">Verify the main navigation menu is visible</div>
+            <div class="test-step">Click on "Dashboard" link</div>
+            <div class="test-step">Click on "Employees" link</div>
+            <div class="test-step">Click on "Add Employee" link</div>
+            
+            <div class="expected-result">
+                <strong>Expected Result:</strong> All navigation links work correctly and load the appropriate pages without errors
+            </div>
+            
+            <div class="status-buttons">
+                <button class="btn btn-success" onclick="markTest('nav-1', 'pass')">Pass</button>
+                <button class="btn btn-danger" onclick="markTest('nav-1', 'fail')">Fail</button>
+                <button class="btn btn-warning" onclick="markTest('nav-1', 'skip')">Skip</button>
+            </div>
+        </div>
+
+        <div class="test-case" data-test="nav-2">
+            <h3>TC-NAV-002: URL Direct Access</h3>
+            <div class="test-step">Navigate directly to: /employees</div>
+            <div class="test-step">Navigate directly to: /add-employee</div>
+            <div class="test-step">Navigate directly to: /</div>
+            
+            <div class="expected-result">
+                <strong>Expected Result:</strong> All URLs load correctly and display the appropriate components
+            </div>
+            
+            <div class="status-buttons">
+                <button class="btn btn-success" onclick="markTest('nav-2', 'pass')">Pass</button>
+                <button class="btn btn-danger" onclick="markTest('nav-2', 'fail')">Fail</button>
+                <button class="btn btn-warning" onclick="markTest('nav-2', 'skip')">Skip</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Suite 2: Dashboard Component</h2>
+        
+        <div class="test-case" data-test="dash-1">
+            <h3>TC-DASH-001: Dashboard Display</h3>
+            <div class="test-step">Navigate to the Dashboard page</div>
+            <div class="test-step">Verify the page title "Employee Management Dashboard"</div>
+            <div class="test-step">Check that statistics cards are displayed</div>
+            <div class="test-step">Verify Quick Actions section is visible</div>
+            <div class="test-step">Check that action buttons are clickable</div>
+            
+            <div class="expected-result">
+                <strong>Expected Result:</strong> Dashboard displays correctly with all statistics and action buttons
+            </div>
+            
+            <div class="status-buttons">
+                <button class="btn btn-success" onclick="markTest('dash-1', 'pass')">Pass</button>
+                <button class="btn btn-danger" onclick="markTest('dash-1', 'fail')">Fail</button>
+                <button class="btn btn-warning" onclick="markTest('dash-1', 'skip')">Skip</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Suite 3: Employee Form</h2>
+        
+        <div class="test-case" data-test="form-1">
+            <h3>TC-FORM-001: Form Display</h3>
+            <div class="test-step">Navigate to Add Employee page</div>
+            <div class="test-step">Verify all form fields are present</div>
+            <div class="test-step">Check field labels are correct</div>
+            <div class="test-step">Verify required field indicators (*)</div>
+            <div class="test-step">Check submit button is present</div>
+            
+            <div class="expected-result">
+                <strong>Expected Result:</strong> Form displays with all required fields: First Name*, Last Name*, Email*, Position*, Department, Salary, Hire Date
+            </div>
+            
+            <div class="status-buttons">
+                <button class="btn btn-success" onclick="markTest('form-1', 'pass')">Pass</button>
+                <button class="btn btn-danger" onclick="markTest('form-1', 'fail')">Fail</button>
+                <button class="btn btn-warning" onclick="markTest('form-1', 'skip')">Skip</button>
+            </div>
+        </div>
+
+        <div class="test-case" data-test="form-2">
+            <h3>TC-FORM-002: Valid Form Submission</h3>
+            <div class="test-step">Fill in all required fields with valid data:</div>
+            <div class="test-step">• First Name: "Test"</div>
+            <div class="test-step">• Last Name: "User"</div>
+            <div class="test-step">• Email: "test.user@example.com"</div>
+            <div class="test-step">• Position: "Test Engineer"</div>
+            <div class="test-step">• Department: "QA"</div>
+            <div class="test-step">• Salary: "60000"</div>
+            <div class="test-step">• Hire Date: Current date</div>
+            <div class="test-step">Click Submit button</div>
+            
+            <div class="expected-result">
+                <strong>Expected Result:</strong> Form submits successfully, shows success message, and clears the form
+            </div>
+            
+            <div class="status-buttons">
+                <button class="btn btn-success" onclick="markTest('form-2', 'pass')">Pass</button>
+                <button class="btn btn-danger" onclick="markTest('form-2', 'fail')">Fail</button>
+                <button class="btn btn-warning" onclick="markTest('form-2', 'skip')">Skip</button>
+            </div>
+        </div>
+
+        <div class="test-case" data-test="form-3">
+            <h3>TC-FORM-003: Form Validation</h3>
+            <div class="test-step">Try submitting form with empty required fields</div>
+            <div class="test-step">Enter invalid email format</div>
+            <div class="test-step">Enter single character in name fields</div>
+            <div class="test-step">Enter negative salary</div>
+            <div class="test-step">Enter future date for hire date</div>
+            
+            <div class="expected-result">
+                <strong>Expected Result:</strong> Appropriate validation errors are displayed for each invalid field
+            </div>
+            
+            <div class="status-buttons">
+                <button class="btn btn-success" onclick="markTest('form-3', 'pass')">Pass</button>
+                <button class="btn btn-danger" onclick="markTest('form-3', 'fail')">Fail</button>
+                <button class="btn btn-warning" onclick="markTest('form-3', 'skip')">Skip</button>
+            </div>
+        </div>
+
+        <div class="test-case" data-test="form-4">
+            <h3>TC-FORM-004: Duplicate Email Validation</h3>
+            <div class="test-step">Try to create employee with email: "john.doe@example.com"</div>
+            <div class="test-step">Fill other required fields with valid data</div>
+            <div class="test-step">Submit the form</div>
+            
+            <div class="expected-result">
+                <strong>Expected Result:</strong> Error message "Employee with this email already exists" is displayed
+            </div>
+            
+            <div class="status-buttons">
+                <button class="btn btn-success" onclick="markTest('form-4', 'pass')">Pass</button>
+                <button class="btn btn-danger" onclick="markTest('form-4', 'fail')">Fail</button>
+                <button class="btn btn-warning" onclick="markTest('form-4', 'skip')">Skip</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Suite 4: Employee List</h2>
+        
+        <div class="test-case" data-test="list-1">
+            <h3>TC-LIST-001: Employee List Display</h3>
+            <div class="test-step">Navigate to Employees page</div>
+            <div class="test-step">Verify employee cards are displayed</div>
+            <div class="test-step">Check that each card shows: Name, Email, Position, Department</div>
+            <div class="test-step">Verify Edit and Delete buttons are present</div>
+            
+            <div class="expected-result">
+                <strong>Expected Result:</strong> Employee list displays with properly formatted employee cards
+            </div>
+            
+            <div class="status-buttons">
+                <button class="btn btn-success" onclick="markTest('list-1', 'pass')">Pass</button>
+                <button class="btn btn-danger" onclick="markTest('list-1', 'fail')">Fail</button>
+                <button class="btn btn-warning" onclick="markTest('list-1', 'skip')">Skip</button>
+            </div>
+        </div>
+
+        <div class="test-case" data-test="list-2">
+            <h3>TC-LIST-002: Delete Employee</h3>
+            <div class="test-step">Click Delete button on an employee card</div>
+            <div class="test-step">Verify confirmation dialog appears</div>
+            <div class="test-step">Click "OK" to confirm deletion</div>
+            <div class="test-step">Check that employee is removed from the list</div>
+            
+            <div class="expected-result">
+                <strong>Expected Result:</strong> Employee is successfully deleted from the list after confirmation
+            </div>
+            
+            <div class="status-buttons">
+                <button class="btn btn-success" onclick="markTest('list-2', 'pass')">Pass</button>
+                <button class="btn btn-danger" onclick="markTest('list-2', 'fail')">Fail</button>
+                <button class="btn btn-warning" onclick="markTest('list-2', 'skip')">Skip</button>
+            </div>
+        </div>
+
+        <div class="test-case" data-test="list-3">
+            <h3>TC-LIST-003: Cancel Delete</h3>
+            <div class="test-step">Click Delete button on an employee card</div>
+            <div class="test-step">Click "Cancel" in the confirmation dialog</div>
+            <div class="test-step">Verify employee remains in the list</div>
+            
+            <div class="expected-result">
+                <strong>Expected Result:</strong> Employee deletion is cancelled and employee remains in the list
+            </div>
+            
+            <div class="status-buttons">
+                <button class="btn btn-success" onclick="markTest('list-3', 'pass')">Pass</button>
+                <button class="btn btn-danger" onclick="markTest('list-3', 'fail')">Fail</button>
+                <button class="btn btn-warning" onclick="markTest('list-3', 'skip')">Skip</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Suite 5: Data Formatting</h2>
+        
+        <div class="test-case" data-test="format-1">
+            <h3>TC-FORMAT-001: Currency and Date Formatting</h3>
+            <div class="test-step">Add employee with salary: 75000</div>
+            <div class="test-step">Add hire date: 2023-06-15</div>
+            <div class="test-step">View employee in the employee list</div>
+            <div class="test-step">Verify salary displays as: $75,000</div>
+            <div class="test-step">Verify date displays as: June 15, 2023</div>
+            
+            <div class="expected-result">
+                <strong>Expected Result:</strong> Currency and dates are properly formatted for display
+            </div>
+            
+            <div class="status-buttons">
+                <button class="btn btn-success" onclick="markTest('format-1', 'pass')">Pass</button>
+                <button class="btn btn-danger" onclick="markTest('format-1', 'fail')">Fail</button>
+                <button class="btn btn-warning" onclick="markTest('format-1', 'skip')">Skip</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Suite 6: Error Handling</h2>
+        
+        <div class="test-case" data-test="error-1">
+            <h3>TC-ERROR-001: Form Error Display</h3>
+            <div class="test-step">Submit form with validation errors</div>
+            <div class="test-step">Verify error messages are clearly visible</div>
+            <div class="test-step">Check that errors are associated with correct fields</div>
+            <div class="test-step">Fix one error and verify it disappears when typing</div>
+            
+            <div class="expected-result">
+                <strong>Expected Result:</strong> Error messages are clear, properly positioned, and respond to user input
+            </div>
+            
+            <div class="status-buttons">
+                <button class="btn btn-success" onclick="markTest('error-1', 'pass')">Pass</button>
+                <button class="btn btn-danger" onclick="markTest('error-1', 'fail')">Fail</button>
+                <button class="btn btn-warning" onclick="markTest('error-1', 'skip')">Skip</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-results" id="testResults">
+        <h4>Test Results</h4>
+        <div id="resultsSummary">
+            <div>Total: <span id="totalTests">0</span></div>
+            <div>Passed: <span id="passedTests">0</span></div>
+            <div>Failed: <span id="failedTests">0</span></div>
+            <div>Skipped: <span id="skippedTests">0</span></div>
+        </div>
+        <button class="btn btn-warning" onclick="resetTests()" style="margin-top: 10px;">Reset All</button>
+    </div>
+
+    <script>
+        let testResults = {};
+        
+        function markTest(testId, status) {
+            testResults[testId] = status;
+            updateTestDisplay(testId, status);
+            updateSummary();
+        }
+        
+        function updateTestDisplay(testId, status) {
+            const testCase = document.querySelector(`[data-test="${testId}"]`);
+            const buttons = testCase.querySelectorAll('.btn');
+            
+            // Reset all buttons
+            buttons.forEach(btn => {
+                btn.style.fontWeight = 'normal';
+                btn.style.boxShadow = 'none';
+            });
+            
+            // Highlight selected button
+            const selectedButton = Array.from(buttons).find(btn => 
+                btn.textContent.toLowerCase() === status
+            );
+            if (selectedButton) {
+                selectedButton.style.fontWeight = 'bold';
+                selectedButton.style.boxShadow = '0 0 5px rgba(0,0,0,0.3)';
+            }
+        }
+        
+        function updateSummary() {
+            const total = Object.keys(testResults).length;
+            const passed = Object.values(testResults).filter(s => s === 'pass').length;
+            const failed = Object.values(testResults).filter(s => s === 'fail').length;
+            const skipped = Object.values(testResults).filter(s => s === 'skip').length;
+            
+            document.getElementById('totalTests').textContent = total;
+            document.getElementById('passedTests').textContent = passed;
+            document.getElementById('failedTests').textContent = failed;
+            document.getElementById('skippedTests').textContent = skipped;
+        }
+        
+        function resetTests() {
+            testResults = {};
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.style.fontWeight = 'normal';
+                btn.style.boxShadow = 'none';
+            });
+            updateSummary();
+        }
+        
+        // Initialize
+        updateSummary();
+    </script>
+</body>
+</html>
