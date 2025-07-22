@@ -1,31 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
-import EmployeeList from './components/EmployeeList';
-import EmployeeForm from './components/EmployeeForm';
-import Dashboard from './components/Dashboard';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { CContainer, CRow, CCol, CHeader, CHeaderBrand, CHeaderNav } from '@coreui/react';
+import '@coreui/coreui/dist/css/coreui.min.css';
+import EmployeeList from './views/EmployeeList';
+import EmployeeForm from './views/EmployeeForm';
 
 function App() {
   return (
-    <div className="App">
-      <nav className="navbar">
-        <h1>Promt Employee Management</h1>
-        <ul>
-          <li><Link to="/">Dashboard</Link></li>
-          <li><Link to="/employees">Employees</Link></li>
-          <li><Link to="/add-employee">Add Employee</Link></li>
-        </ul>
-      </nav>
-      
-      <main className="container">
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/employees" element={<EmployeeList />} />
-          <Route path="/add-employee" element={<EmployeeForm />} />
-          <Route path="/edit-employee/:id" element={<EmployeeForm />} />
-        </Routes>
-      </main>
-    </div>
+    <Router>
+      <div className="App">
+        <CHeader className="mb-4">
+          <CContainer fluid>
+            <CHeaderBrand href="/">
+              <h4 className="mb-0">Employee Management System</h4>
+            </CHeaderBrand>
+          </CContainer>
+        </CHeader>
+        
+        <CContainer fluid>
+          <CRow>
+            <CCol>
+              <Routes>
+                <Route path="/" element={<EmployeeList />} />
+                <Route path="/employee/new" element={<EmployeeForm />} />
+                <Route path="/employee/edit/:id" element={<EmployeeForm />} />
+              </Routes>
+            </CCol>
+          </CRow>
+        </CContainer>
+      </div>
+    </Router>
   );
 }
 
