@@ -11,6 +11,23 @@ A comprehensive React-based employee management system with robust testing infra
 - **Search & Filter**: Employee search and department filtering
 - **Comprehensive Testing**: 100% coverage on business logic
 
+## Screenshots
+
+### Employee List Page
+The main dashboard displaying all employees in a table format with search, filter, and CRUD operations.
+
+![Employee List](./screenshots/employee-list-page.png)
+
+### Add New Employee Page
+Form interface for creating new employee records with validation.
+
+![Add Employee](./screenshots/add-employee-page.png)
+
+### Edit Employee Page
+Form interface for updating existing employee information.
+
+![Edit Employee](./screenshots/edit-employee-page.png)
+
 ## Quick Start
 
 ### Prerequisites
