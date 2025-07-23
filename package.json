@@ -8,6 +8,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:watch": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "test:unit": "react-scripts test --testPathPattern=\"(services|utils)/__tests__\" --watchAll=false",
+    "test:integration": "react-scripts test --testPathPattern=\"(components|src)/__tests__\" --watchAll=false",
     "eject": "react-scripts eject"
   },
   "keywords": [],
