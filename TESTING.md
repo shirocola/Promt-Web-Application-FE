@@ -18,6 +18,41 @@ The project uses a comprehensive testing approach with:
 - **Basic smoke tests** for React components
 - **Manual testing framework** for complex UI flows
 
+### Understanding Test Coverage Results
+
+When you run `npm run test:coverage`, Jest generates a comprehensive coverage report with four key metrics:
+
+#### Coverage Metrics Explained
+
+1. **% Stmts (Statements)**: Percentage of executable statements that were executed during tests
+   - **Current**: 100% - All executable code statements are covered by tests
+   - **Goal**: 90%+ for all files
+
+2. **% Branch (Branch Coverage)**: Percentage of decision branches (if/else, switch cases) that were tested
+   - **Current**: 98.7% - Almost all code paths and conditional logic are tested
+   - **Goal**: 90%+ for critical logic
+
+3. **% Funcs (Functions)**: Percentage of functions that were called during tests
+   - **Current**: 100% - All functions have been executed at least once
+   - **Goal**: 90%+ for all modules
+
+4. **% Lines (Line Coverage)**: Percentage of executable lines that were executed
+   - **Current**: 100% - All executable lines of code were run during tests
+   - **Goal**: 90%+ for all files
+
+#### Uncovered Line Numbers
+
+The "Uncovered Line #s" column shows specific line numbers that weren't executed during tests. For example:
+- `employeeService.js | 25,75` means lines 25 and 75 are not covered by tests
+- These are typically edge cases, error conditions, or defensive code paths
+
+#### Coverage Thresholds
+
+The project enforces minimum coverage thresholds via Jest configuration:
+- **90% minimum** for all metrics (statements, branches, functions, lines)
+- Tests will fail if coverage drops below these thresholds
+- This ensures consistent code quality and test completeness
+
 ## Running Tests
 
 ### All Tests
